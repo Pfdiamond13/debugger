@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Pane, Button } from 'evergreen-ui';
 import Search from './components/Search';
+import Events from './components/Events';
 
 
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
           <Button marginRight={16}>Live</Button>
           <Search handleSearch={this.handleSearch} />
         </Pane>
+        <Events />
       </Pane>
     );
   }
