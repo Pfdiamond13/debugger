@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Pane } from 'evergreen-ui';
+import { Pane, Button } from 'evergreen-ui';
 import Search from './components/Search';
 
 
@@ -31,6 +31,8 @@ class App extends React.Component {
           border="default"
           background="tint2"
         >
+          <Button marginLeft={16}>Pause</Button>
+          <Button marginRight={16}>Live</Button>
           <Search handleSearch={this.handleSearch} />
         </Pane>
       </Pane>
