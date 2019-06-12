@@ -1,7 +1,8 @@
 import React from 'react';
 import { Pane, Text, Icon } from 'evergreen-ui';
+import moment from 'moment';
 
-const Events = () => {
+const Events = ({ event }) => {
   return (
     <Pane
       height={60}
@@ -11,10 +12,10 @@ const Events = () => {
       borderTop="muted"
       borderBottom="muted"
     >
-      <Icon icon="tick-circle" color="success" marginRight={16} />
-      <Text marginRight={16}>Identify</Text>
-      <Text flex="1 1 0%">KEY</Text>
-      <Text>Date</Text>
+      <Icon icon="tick-circle" color="info" marginRight={16} />
+      <Text marginRight={16}>{event.type.toUpperCase()}</Text>
+      <Text flex="1 1 0%">{event.userId}</Text>
+      <Text>{moment(event.receivedAt).format('YYYY/DD/MM HH:MM:SS')}</Text>
     </Pane>
   );
 };
