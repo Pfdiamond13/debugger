@@ -53,8 +53,8 @@ class Debugger extends React.Component {
   // Filters events based on their type, begins after matching just one charcter
 
   filterEvents() {
-    const { searchValue, events } = this.state;
-    const filteredEventList = events.filter(event => event.type.slice(0, searchValue.length).toLowerCase() === searchValue.toLowerCase());
+    const { searchValue } = this.state;
+    const filteredEventList = eventQueue.filter(event => event.type.slice(0, searchValue.length).toLowerCase() === searchValue.toLowerCase());
     if (searchValue === '') {
       this.setState({ filteredEvents: [] });
     } else {
