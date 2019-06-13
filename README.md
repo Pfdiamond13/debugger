@@ -1,5 +1,3 @@
-# debugger
-
 # Debugger
 
 > Implementation of the debugger tool. Gives a user access to a live feed of to all api calls to their app. User has the ability to pause the feed as well as search by event types.
@@ -16,10 +14,10 @@
 
 From within the root directory:
 
-npm install
-npm run start
-docker-compose up
-localhost:3000
+- npm install
+- npm run start
+- docker-compose up
+- localhost:3000
 
 For testing:
 
