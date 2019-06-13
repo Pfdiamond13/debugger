@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+import socketIOClient from 'socket.io-client';
 import { Pane, Button } from 'evergreen-ui';
 import Search from './components/Search';
 import Events from './components/Events';
 
+let messageQueue = [];
 
 class App extends React.Component {
   constructor() {
@@ -20,21 +21,32 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/events')
-      .then(response => (
-        response.data
-      ))
-      .then((eventData) => {
-        this.setState({
-          events: eventData,
-        });
-      });
+    const socket = socketIOClient('http://localhost:3000');
+    socket.on('message', (data) => {
+      const parsedData = JSON.parse(data);
+      if (messageQueue.length >= 500) {
+        messageQueue = [...messageQueue.slice(0, 25)];
+      }
+      messageQueue = [parsedData, ...messageQueue];
+    });
+    this.interval = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   handleSearch(e) {
     this.setState({
       searchValue: e.target.value,
     });
+  }
+
+  tick() {
+    const { isLive } = this.state;
+    if (isLive) {
+      this.setState({ events: [...messageQueue.slice(0, 25)] });
+    }
   }
 
   handlePauseResume(e) {
@@ -48,6 +60,7 @@ class App extends React.Component {
       this.setState({
         isLive: false,
         isPaused: true,
+        events: [...messageQueue].slice(0, 25),
       });
     }
   }
