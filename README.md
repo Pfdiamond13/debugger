@@ -6,6 +6,8 @@
 
 > The debugger will start with a live feed and the "Live" button selected. To pause simply press the "Pause" button. If you attempt to search the debugger will automatically pause for you. At anytime to reactive the live feed, press the "Live" button.
 
+[Demo](https://giphy.com/gifs/55m7PMyeocG5tONUFI/fullscreen)
+
 ## Requirements
 
 - Node 8.15.1
